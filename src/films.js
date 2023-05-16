@@ -119,20 +119,21 @@ function hoursToMinutes(array) {
   // console.log("array", array)
   // console.log("newArray", newArray)
 
-  for (let i = 0; i < newArray.length; i++) {
+  newArray.map(movie => {
+    hour = (movie.duration[0]) * 60;
+        // console.log(hour)
 
-    hour = (newArray[i].duration[0]) * 60;
-    // console.log(hour)
+    minIndex = movie.duration.toString().indexOf("min");
+        //  console.log(minIndex)
+        //******************* Por que no funciona sin toString() cuando el movie.duration ya es una string? 
 
-    minIndex = newArray[i].duration.toString().indexOf("min")
-    //******************* Por que no funciona sin toString() cuando el array[i].duration ya es una string? 
-    // console.log(minIndex)
+    min = movie.duration.toString().substring(3, minIndex)
+        //  console.log(min)
 
-    min = newArray[i].duration.toString().substring(3, minIndex)
+    movie.duration = Number(hour) + Number(min) || Number(hour);
+        // console.log(movie)
+  })
 
-    newArray[i].duration = Number(hour) + Number(min) || Number(hour);
-
-  }
   // console.log("array", array)
   // ******************* Por que ha cambiado el array? 
 
