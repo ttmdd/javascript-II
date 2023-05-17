@@ -43,7 +43,7 @@ function moviesAverageOfDirector(array, director) {
   })
 
   // console.log(typeof(average))
-  // ******************* Por que dice que el un string? 
+  // ******************* Por que dice que es un string? 
   // ******************* Como hacer lo mismo con reduce()?
   return Number(average.toFixed(2));
   
@@ -144,8 +144,19 @@ function hoursToMinutes(array) {
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(array, year) {
+
+  const winner = []
+
+  array.map(movie => {
+    if (movie.year === year) {
+      array.sort((a, b) => a.score - b.score)
+    }
+  })
+
+  winner.push(array[array.length - 1])
+
+  return winner;
 }
 
 
