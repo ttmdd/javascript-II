@@ -3,9 +3,7 @@ const movies = require("./data");
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(array) {
 
-  let director = [];
-
-  array.map(movie => director.push(movie.director));
+  const director = array.map(movie => movie.director);
 
   return director;
 
@@ -14,13 +12,7 @@ function getAllDirectors(array) {
 // Exercise 2: Get the films of a certain director
 function getMoviesFromDirector(array, director) {
 
-  let directorMovies = [];
-
-  array.filter(movie => {
-    if (movie.director === director) {
-      directorMovies.push(movie)
-    }
-  })
+  const directorMovies = array.filter(movie => movie.director === director);
 
   return directorMovies;
  
@@ -29,22 +21,17 @@ function getMoviesFromDirector(array, director) {
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
 
-  let average = 0;
-  let score = 0;
-  let numberOfMovies = 0;
+  // let score = 0;
 
+  const filteredArray = array.filter(movie => movie.director === director);
 
-  array.filter(movie => {
-    if (movie.director === director) {
-      numberOfMovies += 1;
-      score += movie.score;
-      average = score / numberOfMovies;
-    }
-  })
+  const average = filteredArray.reduce((accScore, movie) => accScore + movie.score, 0) / filteredArray.length;
 
-  // console.log(typeof(average))
-  // ******************* Por que dice que es un string? 
-  // ******************* Como hacer lo mismo con reduce()?
+  // OR
+  // filteredArray.map(movie => score += movie.score);
+  // const final = score / filteredArray.length
+
+  // Have to use Number() OR + because toFixed() converrts a number into a string
   return Number(average.toFixed(2));
   
 }
@@ -52,9 +39,7 @@ function moviesAverageOfDirector(array, director) {
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
 
-  let sortedTitles = [];
-
-  array.map(movie => sortedTitles.push(movie.title));
+  const sortedTitles = array.map(movie => movie.title);
   sortedTitles.sort().splice(20);
 
   return sortedTitles;
@@ -126,6 +111,7 @@ function hoursToMinutes(array) {
     minIndex = movie.duration.toString().indexOf("min");
         //  console.log(minIndex)
         //******************* Por que no funciona sin toString() cuando el movie.duration ya es una string? 
+        //******************* Mejor manera de hacerlo?
 
     min = movie.duration.toString().substring(3, minIndex)
         //  console.log(min)
