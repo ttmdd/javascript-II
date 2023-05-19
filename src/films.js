@@ -117,14 +117,12 @@ function bestFilmOfYear(array, year) {
 
   const winner = []
 
-  array.map(movie => {
-    if (movie.year === year) {
-      array.sort((a, b) => a.score - b.score)
-    }
-  })
+  const newArray = array.filter(movie => movie.year === year)
 
-  winner.push(array[array.length - 1])
+  newArray.sort((a, b) => a.score - b.score)
 
+  winner.push(newArray[newArray.length - 1]);
+  
   return winner;
 }
 
