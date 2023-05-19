@@ -94,39 +94,22 @@ function moviesAverageByCategory(array, genre) {
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
 
-  let hour = 0;
-  let minIndex = 0;
-  let min = 0;
-  let newArray = [];
+  const newArray = array.map(movie => ({ ...movie }));
 
-  array.map(movie => newArray.push(movie))
+  const final = newArray.map(movie => {
 
-  // console.log("array", array)
-  // console.log("newArray", newArray)
+    const hour = (movie.duration[0]) * 60;
 
-  newArray.map(movie => {
-    hour = (movie.duration[0]) * 60;
-        // console.log(hour)
+    const minIndex = movie.duration.toString().indexOf("min");
 
-    minIndex = movie.duration.toString().indexOf("min");
-        //  console.log(minIndex)
-        //******************* Por que no funciona sin toString() cuando el movie.duration ya es una string? 
-        //******************* Mejor manera de hacerlo?
+    const min = movie.duration.toString().substring(3, minIndex)
 
-    min = movie.duration.toString().substring(3, minIndex)
-        //  console.log(min)
+    const duration = Number(hour) + Number(min) || Number(hour);
 
-    movie.duration = Number(hour) + Number(min) || Number(hour);
-        // console.log(movie)
+    return {movie, duration: duration}
   })
 
-  // console.log("array", array)
-  // ******************* Por que ha cambiado el array? 
-
-  // console.log("newArray", newArray)
-
-  return newArray;
-
+  return final;
 }
 
 // Exercise 8: Get the best film of a year
